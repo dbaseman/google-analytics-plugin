@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="com.danielcwilson.plugins.googleanalytics"
-    version="0.6.0">
+    version="0.7.0">
   <engines>
     <engine name="cordova" version=">=3.0.0" />
   </engines>
   <name>Google Universal Analytics Plugin</name>
-  <description>Simple tracking (screens/events) for Google Analytics SDK 3.0 (iOS/Android)</description>
+  <description>Simple tracking (screens/events) for Google Analytics SDK 3.0 (iOS/Android/WP8)</description>
   <author>Daniel C. Wilson</author>
   <license>MIT License</license>
   <js-module src="www/analytics.js" name="UniversalAnalytics">
@@ -49,5 +49,22 @@
     </config-file>
     <source-file src="android/UniversalAnalyticsPlugin.java" target-dir="src/com/danielcwilson/plugins/analytics" />
     <source-file src="android/libGoogleAnalyticsServices.jar" target-dir="libs" />
+  </platform>
+
+  <platform name="wp8">
+    <config-file target="config.xml" parent="/*">
+      <feature name="UniversalAnalytics">
+        <param name="wp-package" value="UniversalAnalyticsPlugin" />
+      </feature>
+    </config-file>
+
+    <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+        <Capability Name="ID_CAP_NETWORKING" />
+    </config-file>
+
+    <source-file src="wp8/UniversalAnalytics.cs" />
+    <source-file src="wp8/PhoneHelpers.cs" />
+    <source-file src="wp8/PhoneNameResolver.cs" />
+    <source-file src="wp8/PlatformInfoProvider.WP.cs" />
   </platform>
 </plugin>
